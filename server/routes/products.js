@@ -23,9 +23,6 @@ router.get("/products", (req, res, next) => {
 
 //  GET the Product Details page in order to add a new Product
 router.get("/add", (req, res, next) => {
-  /*****************
-   * ADD CODE HERE *
-   *****************/
   res.render("products/add", { title: "Add New Product", products: "" });
 });
 
@@ -34,13 +31,23 @@ router.post("/add", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
+  let newProduct = new product({
+    Productid: req.body.Productid,
+    Productname: req.body.Productname,
+    Description: req.body.Description,
+    Price: req.body.price,
+  });
+  product.create(newProduct, function (err) {
+    if (err) {
+      console.error(err);
+      res.end(err);
+    }
+    res.redirect("/products");
+  });
 });
 
 // GET the Product Details page in order to edit an existing Product
 router.get("/edit/:id", (req, res, next) => {
-  /*****************
-   * ADD CODE HERE *
-   *****************/
   let id = req.params.id;
   product.findById(id, {}, {}, function (err, productToEdit) {
     if (err) {
