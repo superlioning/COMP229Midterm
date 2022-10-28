@@ -28,9 +28,6 @@ router.get("/add", (req, res, next) => {
 
 // POST process the Product Details page and create a new Product - CREATE
 router.post("/add", (req, res, next) => {
-  /*****************
-   * ADD CODE HERE *
-   *****************/
   let newProduct = new product({
     Productid: req.body.Productid,
     Productname: req.body.Productname,
@@ -62,10 +59,22 @@ router.get("/edit/:id", (req, res, next) => {
 });
 
 // POST - process the information passed from the details form and update the document
-router.post("/:id", (req, res, next) => {
-  /*****************
-   * ADD CODE HERE *
-   *****************/
+router.post("/edit/:id", (req, res, next) => {
+  let id = req.params.id;
+  let updatedProduct = new product({
+    _id: id,
+    Productid: req.body.Productid,
+    Productname: req.body.Productname,
+    Description: req.body.Description,
+    Price: req.body.price,
+  });
+  product.updateOne({ _id: id }, updatedProduct, function (err) {
+    if (err) {
+      console.error(err);
+      res.end(err);
+    }
+    res.redirect("/products");
+  });
 });
 
 // GET - process the delete
