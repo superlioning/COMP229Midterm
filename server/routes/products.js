@@ -77,11 +77,66 @@ router.post("/edit/:id", (req, res, next) => {
   });
 });
 
-// GET - process the delete
+//  GET the delete page in order to delete a Product
 router.get("/delete", (req, res, next) => {
-  /*****************
-   * ADD CODE HERE *
-   *****************/
+  res.render("products/delete", { title: "Delete A Product", products: "" });
 });
 
+// POST - process the delete
+router.post("/delete", (req, res, next) => {
+  //Take user input
+  let productName = req.body.productName;
+  let minPrice = req.body.minPrice;
+  let maxPrice = req.body.maxPrice;
+  console.log(
+    "deleteMany Price Range=",
+    minPrice,
+    ", ",
+    maxPrice,
+    ", ",
+    productName
+  );
+
+  //Take matched data
+  var productFilter = {};
+  //Check if entered price range
+  if (minPrice != "" && maxPrice != "" && minPrice >= 0 && maxPrice >= 0) {
+    productFilter = {
+      Price: {
+        $gte: minPrice,
+        $lte: maxPrice,
+      },
+    };
+    //Check if entered product name
+    if (productName != "") {
+      productFilter = {
+        Price: {
+          $gte: minPrice,
+          $lte: maxPrice,
+        },
+        Productname: {
+          $eq: productName,
+        },
+      };
+    }
+  } else {
+    productFilter = {
+      Productname: {
+        $eq: productName,
+      },
+    };
+  }
+  console.log("filterString= ", productFilter);
+
+  product.deleteMany(productFilter, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      //If delete was successful, return to products list
+      console.log("deleteMany result.deletedCount=", result.deletedCount);
+      res.redirect("/products");
+    }
+  });
+});
 module.exports = router;
