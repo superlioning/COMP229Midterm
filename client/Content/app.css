@@ -1,5 +1,38 @@
+/* Student Name: Ninghua Zhang
+Student ID: 301230968
+Date: 10/26/2022 */
+
 /* Custom CSS goes here */
 body {
   padding-bottom: 70px;
   }
+
+/* CSS settings for home page */
+
+.center {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.center .title {
+  color: black;
+  font-size: 45px;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgb(198, 198, 198);
+}
+
+.center .sub_title {
+  color: black;
+  font-size: 42px;
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgb(198, 198, 198);
+}
+
+.colored {
+    color: #0096c7;
+}
 

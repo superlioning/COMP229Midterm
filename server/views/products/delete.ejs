@@ -10,21 +10,21 @@
                 <form method="post" class="form" style="width:400px">
                     <div class="from-row form-group">
                         <label for="nameTextField">Product Name</label>
-                        <input type="text" class="form-control" id="nameTextField" placeholder="" name="productName" />
+                        <input type="text" class="form-control" id="nameTextField" placeholder="Enter a product name" name="productName" />
                     </div>
                     <div class="form-row row form-group">
                         <div class="form-group col-md-6 ">
                             <label for="priceTextField">Price Range (Min):</label>
-                            <input type="number" class="form-control" id="priceTextField" placeholder="min" name="minPrice" />
+                            <input type="number" class="form-control" id="priceTextField" placeholder="Enter a minimum price" name="minPrice" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="priceTextField" class="form-label">Price Range (Max):</label>
-                            <input type="number" class="form-control" id="priceTextField" placeholder="max" name="maxPrice" />
+                            <input type="number" class="form-control" id="priceTextField" placeholder="Enter a maximum price" name="maxPrice" />
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-check-square-o"></i> Delete
+                    <button type="submit" class="btn btn-primary btnDelete">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Delete
                     </button>
                     <a href="/products" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
                 </form>
